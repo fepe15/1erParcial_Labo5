@@ -18,7 +18,8 @@ import java.util.List;
 public class XmlParser {
 
 
-    public static List<Producto> obtenerProductos(String xml){
+    public static List<Producto> obtenerProductos(String xml) {
+
 
         List<Producto> productos = new ArrayList<>();
 
@@ -26,36 +27,58 @@ public class XmlParser {
         try {
             xmlPullParser.setInput(new StringReader(xml));
             int event = xmlPullParser.getEventType();
+            Producto p=null;
+            while (event != XmlPullParser.END_DOCUMENT)
+            {
 
-            while (event != XmlPullParser.END_DOCUMENT){
-                if (event == XmlPullParser.START_TAG){
+                if (event == XmlPullParser.START_TAG)
+                {
+                    if ("producto".equals(xmlPullParser.getName()))
+                    {
+                        p = new Producto();
+                        Log.d("entro aca!!!!!!","segundo ");
+                    }
+                    if ("id".equals(xmlPullParser.getName()))
+                    {
+                        if (p!=null) {
+                            p.setId(xmlPullParser.nextText());
+                        }
+                    }
+                    if ("nombre".equals(xmlPullParser.getName()))
+                    {
+                        if (p!=null) {
+                            p.setNombre(xmlPullParser.nextText());
+                        }
+
+
+                    }
+                    if ("precio".equals(xmlPullParser.getName()))
+                    {
+                        if (p!=null) {
+                            p.setPrecio(xmlPullParser.nextText());
+                        }
+                    }
+                    if ("cantidad".equals(xmlPullParser.getName())){
+                        if (p!=null) {
+                            p.setCantidad(xmlPullParser.nextText());
+                        }
+                    }
+                }
+                else if (event == XmlPullParser.END_TAG){
                     if ("producto".equals(xmlPullParser.getName())){
-                        Producto p = new Producto();
-                        if ("id".equals(xmlPullParser.getName())){
-                        p.setId(xmlPullParser.getText());
-                        }
-                        if ("nombre".equals(xmlPullParser.getName())){
-                            p.setNombre(xmlPullParser.getText());
-                        }
-                        if ("precio".equals(xmlPullParser.getName())){
-                            p.setPrecio(xmlPullParser.getText());
-                        }
-                        if ("cantidad".equals(xmlPullParser.getName())){
-                            p.setCantidad(xmlPullParser.getText());
-                        }
                         productos.add(p);
-                        p.toString();
                     }
                 }
                 event = xmlPullParser.next();
             }
-            return productos;
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
-
+        return productos;
     }
+
+
 }
+

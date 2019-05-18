@@ -57,6 +57,6 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Nombre :" +  this.getNombre() + "Precio :" + this.getPrecio() + "Cantidad :" + this.getCantidad();
+        return "Nombre :" +  this.getNombre() + " Precio :" + this.getPrecio() + " Cantidad :" + this.getCantidad();
     }
 }

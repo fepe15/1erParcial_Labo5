@@ -19,16 +19,20 @@ import java.net.URLEncoder;
  */
 
 public class HttpConnection {
+    private String metodo;
 
     public HttpConnection(String metodo) {
-
+        this.metodo = metodo;
     }
 
     public String getStringData(String strUrl) throws IOException {
         URL url = new URL(strUrl);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-        urlConnection.connect();
+
+        urlConnection.setRequestMethod(this.metodo);
+        if (this.metodo == "GET"){
+            urlConnection.connect();
+        }
         int response = urlConnection.getResponseCode();
         Log.d("http", "Response code:" + response);
         if(response==200) {
@@ -45,29 +49,5 @@ public class HttpConnection {
         else
             throw new IOException();
     }
-
-
-    public byte[] getBytesData(String strUrl) throws IOException {
-        URL url = new URL(strUrl);
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.setRequestMethod("GET");
-        urlConnection.connect();
-        int response = urlConnection.getResponseCode();
-        Log.d("http", "Response code:" + response);
-        if(response==200) {
-            InputStream is = urlConnection.getInputStream();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int length = 0;
-            while ((length = is.read(buffer)) != -1) {
-                baos.write(buffer, 0, length);
-            }
-            is.close();
-            return baos.toByteArray();
-        }
-        else
-            throw new IOException();
-    }
-
 
 }
