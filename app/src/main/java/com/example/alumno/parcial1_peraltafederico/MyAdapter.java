@@ -13,15 +13,18 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     List<Producto> productos;
+    MyOnClickListener myOnClickListeneryListener;
 
-    public MyAdapter(List<Producto> productos){
+    public MyAdapter(List<Producto> productos, MyOnClickListener myOnClickListeneryListener){
         this.productos = productos;
+        this.myOnClickListeneryListener = myOnClickListeneryListener;
     }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v =null;
         v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recy,parent,false);
-        MyViewHolder myViewHolder = new MyViewHolder(v);
+        MyViewHolder myViewHolder = new MyViewHolder(v,myOnClickListeneryListener);
 
         return myViewHolder;
     }
@@ -35,6 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.txtPrecio.setText(productos.get(position).getPrecio());
         holder.txtCantidad.setText(productos.get(position).getCantidad());
 
+        holder.setPosicion(position);
+
     }
 
     @Override
@@ -46,5 +51,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public List<Producto> setProductos(List<Producto> p){
 
         return this.productos=p;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
     }
 }

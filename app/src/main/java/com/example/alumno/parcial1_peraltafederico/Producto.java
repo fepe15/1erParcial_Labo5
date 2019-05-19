@@ -57,6 +57,17 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Nombre :" +  this.getNombre() + " Precio :" + this.getPrecio() + " Cantidad :" + this.getCantidad();
+        return "Nombre: " +  this.getNombre() + " - Precio: " + this.getPrecio() + " - Cantidad: " + this.getCantidad();
+    }
+
+    public void sumarCantidad(){
+        int i ;
+        i=Integer.parseInt(this.cantidad) +1;
+        this.cantidad = String.valueOf(i);
+    }
+    public void restarCantidad(){
+        int i ;
+        i=Integer.parseInt(this.cantidad) -1;
+        this.cantidad = String.valueOf(i);
     }
 }

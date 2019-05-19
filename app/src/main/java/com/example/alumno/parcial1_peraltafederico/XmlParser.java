@@ -36,7 +36,6 @@ public class XmlParser {
                     if ("producto".equals(xmlPullParser.getName()))
                     {
                         p = new Producto();
-                        Log.d("entro aca!!!!!!","segundo ");
                     }
                     if ("id".equals(xmlPullParser.getName()))
                     {
@@ -60,6 +59,7 @@ public class XmlParser {
                     }
                     if ("cantidad".equals(xmlPullParser.getName())){
                         if (p!=null) {
+
                             p.setCantidad(xmlPullParser.nextText());
                         }
                     }

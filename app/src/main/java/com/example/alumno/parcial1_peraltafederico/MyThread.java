@@ -15,10 +15,9 @@ public class MyThread extends Thread{
     private String url;
     private int posicion;
 
-    public MyThread(Handler handler , String url, int posicion){
+    public MyThread(Handler handler , String url){
         this.handler = handler;
         this.url = url;
-        this.posicion = posicion;
     }
 
     @Override
