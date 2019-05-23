@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
         adapter = new MyAdapter(listProductos, this);
         rvProductos.setAdapter(adapter);
 
-        MyThread myThread = new MyThread(handler,"http://192.168.0.8/Productos.xml");
+        MyThread myThread = new MyThread(handler,"http://192.168.2.180:8080/Productos.xml");
         myThread.start();
 
         //lo ideal es crear los hilos e iniciarlos en onStart() y luego hay que detenerlos en onStop()
