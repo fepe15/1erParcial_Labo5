@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
             if (v.getId() == R.id.btnSumar) {
                 this.listProductos.get(position).sumarCantidad();
                 adapter.notifyDataSetChanged();
-                Log.d("Producto precionado", this.listProductos.get(position).toString());
+                Log.d("Producto presionado", this.listProductos.get(position).toString());
             }
             if (v.getId() == R.id.btnRestar) {
                 i = Integer.parseInt(this.listProductos.get(position).getCantidad());
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
                     this.listProductos.get(position).restarCantidad();
                 }
                 adapter.notifyDataSetChanged();
-                Log.d("Producto precionado", this.listProductos.get(position).toString());
+                Log.d("Producto presionado", this.listProductos.get(position).toString());
             }
         }
     }
